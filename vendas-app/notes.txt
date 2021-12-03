@@ -1,12 +1,26 @@
 # Estrutura de Projeto
+Legenda: 
+  + quando é uma pasta
+  - quando é um arquivo
 
-src
++ src
+
   + components
+    
     + layout
       - index (layout)
+    
     + menu
+      - index.tsx
+    
+    + produtos
+      + cadastro
+        - index.tsx
+    
     - index.ts (raiz que exporta outros componentes de dentro da pasta components)
+
   + pages
+    
     + api
     - _app.tsx
-      index.tsx
+    - index.tsx
