@@ -1,0 +1,12 @@
+# Estrutura de Projeto
+
+src
+  + components
+    + layout
+      - index (layout)
+    + menu
+    - index.ts (raiz que exporta outros componentes de dentro da pasta components)
+  + pages
+    + api
+    - _app.tsx
+      index.tsx
