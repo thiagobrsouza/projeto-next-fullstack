@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { Layout, Input } from "components";
+import { Layout, Input, Message } from "components";
 import { useProdutoService } from 'app/services';
 import { Produto } from 'app/models/produtos';
+import { converterEmBigDecimal } from 'app/util/money';
 
 export const CadastroProdutos: React.FC = () => {
 
@@ -15,7 +16,7 @@ export const CadastroProdutos: React.FC = () => {
 
   const submit = () => {
     const produto: Produto = {
-      id, sku, preco: parseFloat(preco), nome, descricao
+      id, sku, preco: converterEmBigDecimal(preco), nome, descricao
     };
 
     if (id) {
@@ -30,19 +31,20 @@ export const CadastroProdutos: React.FC = () => {
 
   return (
     <Layout titulo="Cadastro de Produtos">
-    {id &&
-      <div className="columns">
-          <Input label="Código:" columnClasses="is-half" value={id} id="id" disabled/>  
-          <Input label="Data cadastro:" columnClasses="is-half" value={dataCadastro} id="dataCadastro" disabled/>
-      </div>
-    }
+      <Message field="Nome" texto='Produto inválido' tipo="danger"/>
+      {id &&
+        <div className="columns">
+            <Input label="Código:" columnClasses="is-half" value={id} id="id" disabled/>  
+            <Input label="Data cadastro:" columnClasses="is-half" value={dataCadastro} id="dataCadastro" disabled/>
+        </div>
+      }
 
       <div className="columns">
         <Input label="SKU: *" columnClasses="is-half" onChange={setSku} value={sku} id="sku"
           placeholder="Digite o SKU do produto"/>
         
         <Input label="Preço: *" columnClasses="is-half" onChange={setPreco} value={preco} id="preco"
-          placeholder="Digite o preço do produto"/>
+          placeholder="Digite o preço do produto" currency maxLength={16}/>
       </div>
 
       <div className="columns">
