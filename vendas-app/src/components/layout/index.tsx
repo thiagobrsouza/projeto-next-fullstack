@@ -1,12 +1,15 @@
+import { Message } from "components";
+import { Alert } from "components/common/message";
 import { ReactNode } from "react";
 import { Menu } from "./menu"
 
 interface LayoutProps {
   titulo?: string;
   children?: ReactNode;
+  mensagens?: Array<Alert>
 }
 
-export const Layout: React.FC<LayoutProps> = ({titulo, children}: LayoutProps) => {
+export const Layout: React.FC<LayoutProps> = ({titulo, children, mensagens}: LayoutProps) => {
   return (
     <div className="app">
       <section className="main-content columns is-fullheight">
@@ -22,6 +25,10 @@ export const Layout: React.FC<LayoutProps> = ({titulo, children}: LayoutProps) =
               </div>
               <div className="card-content">
                 <div className="content">
+                  {mensagens &&
+                    // eslint-disable-next-line react/jsx-key
+                    mensagens.map(msg => <Message {...msg} />)
+                  }
                   { children }
                 </div>
               </div>
