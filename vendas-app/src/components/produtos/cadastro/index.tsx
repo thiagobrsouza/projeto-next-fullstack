@@ -4,6 +4,7 @@ import { useProdutoService } from 'app/services';
 import { Produto } from 'app/models/produtos';
 import { converterEmBigDecimal } from 'app/util/money';
 import { Alert } from 'components/common/message';
+import Link from 'next/link';
 import * as yup from 'yup';
 
 const msgCampoObrigatorio = 'Campo obrigatório!'
@@ -108,7 +109,9 @@ export const CadastroProdutos: React.FC = () => {
           </button>
         </div>
         <div className="control">
-          <button className="button">Voltar</button>
+          <Link href="/consultas/produtos">
+            <button className="button">Voltar</button>
+          </Link>
         </div>
       </div>
       
